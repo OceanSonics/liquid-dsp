@@ -1,6 +1,31 @@
 
 liquid-dsp
 ==========
+Fork with kludged makefile for building in MinGW environments.
+
+How to build and install in an MSYS2 MinGW environment:
+
+```
+pacman -S base-devel mingw-w64-x86_64-toolchain
+./bootstrap.sh
+./configure --enable-simdoverride --enable-fftoverride ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes
+make -j8
+make install
+```
+
+How to build and install to an MXE prefix:
+
+```
+MY_MXE_HOST='i686-w64-mingw32.static'
+MY_MXE_FOLDER="${HOME}/mxe"
+MY_MXE_PREFIX="${MY_MXE_FOLDER}/usr/i686-w64-mingw32.static"
+./bootstrap.sh
+./configure --prefix=${MY_MXE_PREFIX} --host=${MY_MXE_HOST} --enable-simdoverride --enable-fftoverride ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes
+make -j8
+make install
+```
+
+-------------------------------------------------------------------------------
 
 Software-Defined Radio Digital Signal Processing Library -
 [https://liquidsdr.org](https://liquidsdr.org)
